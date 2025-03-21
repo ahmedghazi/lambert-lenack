@@ -61,8 +61,6 @@ const animeOut = () => {
       },
     },
   )
-  // tl.reverse()
-  //@mouseleave="toggle(false)"
 }
 </script>
 <template>
