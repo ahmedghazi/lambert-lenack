@@ -25,9 +25,11 @@ const components: PortableTextComponents = {
 <template>
   <section class="module module--textUI">
     <div class="inner">
-      <div v-if="input.text && input.text.fr" class="text labeur">
-        <PortableText :value="input.text.fr" :components="components" />
-      </div>
+      <ClientOnly>
+        <div v-if="input.text && input.text.fr" class="text labeur">
+          <PortableText :value="input.text.fr" :components="components" />
+        </div>
+      </ClientOnly>
     </div>
   </section>
 </template>
