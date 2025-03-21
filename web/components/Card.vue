@@ -6,20 +6,22 @@ defineProps<{ input: Project }>()
 </script>
 
 <template>
-  <NuxtLink class="card" :to="_linkResolver(input)">
-    <img
-      v-if="input.imageCover"
-      class="visual"
-      :src="urlFor(input.imageCover).width(500).height(300).url()"
-      alt="Cover image"
-    />
+  <article class="card">
+    <NuxtLink :to="_linkResolver(input)">
+      <img
+        v-if="input.imageCover"
+        class="visual"
+        :src="urlFor(input.imageCover).width(500).height(300).url()"
+        alt="Cover image"
+      />
 
-    <div v-else class="card__cover--none" />
+      <div v-else class="card__cover--none" />
 
-    <div class="header">
-      <h2 v-if="input.title" class="card__title">{{ input.title.fr }}</h2>
-    </div>
-  </NuxtLink>
+      <div class="header">
+        <h2 v-if="input.title" class="card__title">{{ input.title.fr }}</h2>
+      </div>
+    </NuxtLink>
+  </article>
 </template>
 
 <style scoped lang="scss">

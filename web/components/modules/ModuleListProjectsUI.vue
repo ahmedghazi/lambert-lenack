@@ -1,7 +1,18 @@
 <script setup lang="ts">
 import type { Project, ListProjectsUI } from '~/types/schema'
+import gsap from 'gsap'
 
 defineProps<{ input: ListProjectsUI }>()
+
+onMounted(() => {
+  gsap.to('.card', {
+    opacity: 1,
+    duration: 0.5,
+    stagger: {
+      each: 0.2,
+    },
+  })
+})
 </script>
 
 <template>
@@ -12,8 +23,11 @@ defineProps<{ input: ListProjectsUI }>()
   </section>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .module {
   padding-top: var(--space-xl);
+  article {
+    opacity: 0;
+  }
 }
 </style>
