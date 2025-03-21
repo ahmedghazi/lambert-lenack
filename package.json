@@ -1,0 +1,28 @@
+{
+  "name": "sanity-template-nuxt-clean",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "web",
+    "studio"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=web\" \"npm run dev --workspace=studio\"",
+    "format": "prettier --cache --write .",
+    "d": "git add . && git commit -m 'let s gooo' && git push",
+    "dm": "func() { git add . && git commit -m \"$1\" && git push; }; func"
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-packagejson"
+    ],
+    "semi": false,
+    "singleQuote": true
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "prettier": "^3.4.2",
+    "prettier-plugin-packagejson": "2.5.0"
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+}
