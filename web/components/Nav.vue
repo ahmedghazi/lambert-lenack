@@ -36,24 +36,33 @@ watch(
 
 // const tl = gsap.timeline({ paused: true })
 const animeIn = () => {
-  gsap.to('.nav-item', {
-    opacity: 1,
-    duration: 0.5,
-    stagger: {
-      each: 0.1,
+  gsap.fromTo(
+    '.nav-item',
+    { opacity: 0 },
+    {
+      opacity: 1,
+      duration: 0.5,
+      stagger: {
+        each: 0.05,
+      },
     },
-  })
+  )
 }
 const animeOut = () => {
-  gsap.to('.nav-item', {
-    opacity: 0,
-    duration: 0.5,
-    stagger: {
-      each: 0.1,
-      from: 'end',
+  gsap.fromTo(
+    '.nav-item',
+    { opacity: 1 },
+    {
+      opacity: 0,
+      duration: 0.5,
+      stagger: {
+        each: 0.05,
+        from: 'end',
+      },
     },
-  })
+  )
   // tl.reverse()
+  //@mouseleave="toggle(false)"
 }
 </script>
 <template>
@@ -102,8 +111,11 @@ const animeOut = () => {
 <style lang="scss" scoped>
 nav {
   position: fixed;
-  top: 20px;
-  left: 40px;
+  left: 0;
+  top: 0;
+  padding: 20px 40px;
+  /* top: 20px; */
+  /* left: 40px; */
   z-index: 1;
   display: flex;
   flex-direction: column;
