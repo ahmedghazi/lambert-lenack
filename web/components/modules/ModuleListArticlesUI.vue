@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { PortableText } from '@portabletext/vue'
 import type { ListArticlesUI } from '~/types/schema'
+import { portableTextComponents } from '~/utils/sanity-api/portableTextComponents'
 
 defineProps<{ input: ListArticlesUI }>()
 
@@ -39,9 +40,11 @@ const _formatDate = (date: string) => {
             </h2>
 
             <div v-if="item.text && item.text.fr" class="text">
-              <PortableText :value="item.text.fr" />
+              <PortableText
+                :value="item.text.fr"
+                :components="portableTextComponents"
+              />
             </div>
-            <!-- <pre>{{ JSON.stringify(item.link, null, 2) }}</pre> -->
             <NuxtLink
               v-if="item.link && item.link.link && item.link.label"
               :to="_linkResolver(item.link?.link)"
@@ -66,6 +69,7 @@ const _formatDate = (date: string) => {
 
   article {
     margin-bottom: 15%;
+    opacity: 1;
   }
   img {
     width: 100%;

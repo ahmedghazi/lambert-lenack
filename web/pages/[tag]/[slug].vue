@@ -54,7 +54,7 @@ const toggleCredits = () => {
   </section>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 .content {
   padding: calc(var(--space-xxl) / 2) var(--space-xxl);
 }
@@ -89,7 +89,6 @@ const toggleCredits = () => {
   width: 75%;
   max-width: 350px;
   max-height: 75%;
-  padding-right: 15px;
   margin: 0;
   overflow-y: auto !important;
   overflow-anchor: none;
@@ -103,6 +102,9 @@ const toggleCredits = () => {
     background-color: transparent;
   }
   font-size: 11px;
+  p {
+    padding-right: 15px;
+  }
   .metas {
     margin-top: 40px;
     column-count: 2;

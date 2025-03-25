@@ -30,7 +30,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- {{ length }} -->
   <ClientOnly>
     <swiper-container
       ref="containerRef"
@@ -58,9 +57,7 @@ onMounted(() => {
     </swiper-container>
   </ClientOnly>
 
-  <!-- Go back one slide -->
   <button class="btn--prev" @click="swiper.prev()">Prev</button>
-  <!-- Go forward one slide -->
   <button class="btn--next" @click="swiper.next()">Next</button>
   <div class="swiper-pagination"></div>
 </template>

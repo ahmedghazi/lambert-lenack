@@ -111,6 +111,7 @@ nav {
   position: fixed;
   left: 0;
   top: 0;
+  bottom: 0;
   padding: 20px 40px;
   /* top: 20px; */
   /* left: 40px; */
