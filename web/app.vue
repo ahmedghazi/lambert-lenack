@@ -3,6 +3,7 @@ import './assets/styles/tailwind.css'
 import './assets/styles/index.scss'
 import Header from './components/Header.vue'
 import { onMounted, onUnmounted } from 'vue'
+import PreviewModeBanner from './components/PreviewModeBanner.vue'
 // import { useSanityVisualEditingState } from '@nuxtjs/sanity/runtime/composables/visual-editing.js'
 const route = useRoute()
 // const { enabled: previewEnabled, inFrame } = useSanityVisualEditingState()
@@ -68,6 +69,7 @@ function _format() {
   <div id="page">
     <Header />
     <main>
+      <PreviewModeBanner />
       <NuxtPage />
     </main>
   </div>

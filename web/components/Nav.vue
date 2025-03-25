@@ -32,6 +32,7 @@ watch(
       animeOut()
     }
   },
+  { deep: true },
 )
 
 // const tl = gsap.timeline({ paused: true })
@@ -62,12 +63,18 @@ const animeOut = () => {
     },
   )
 }
+
+const animeOutDelayed = () => {
+  setTimeout(() => {
+    toggle(false)
+  }, 1000)
+}
 </script>
 <template>
   <nav
     @click="toggle(!isOpen)"
     @mouseenter="toggle(true)"
-    @mouseleave="toggle(false)"
+    @mouseleave="animeOutDelayed"
     :class="{ 'is-open': isOpen === true }"
   >
     <div id="plus">

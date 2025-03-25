@@ -4,7 +4,7 @@ import type { PageModulaire, Project } from '~/types/schema'
 import { homeQuery } from '~/utils/sanity-api/queries'
 
 const query = groq`${homeQuery}`
-const { data } = await useSanityQuery<PageModulaire>(query)
+const { data, refresh } = await useSanityQuery<PageModulaire>(query)
 </script>
 
 <template>

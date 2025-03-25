@@ -14,9 +14,12 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/sanity": "^1.13.1",
     "@portabletext/vue": "^1.0.11",
+    "@sanity/client": "^6.28.3",
     "@sanity/image-url": "^1.1.0",
     "groq": "^3.67.1",
-    "gsap": "^3.12.7"
+    "gsap": "^3.12.7",
+    "lodash": "^4.17.21",
+    "shallowequal": "^1.1.0"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.13.2",
