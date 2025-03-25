@@ -17,7 +17,25 @@ export const linkResolver: PresentationPluginOptions['resolve'] = {
             title: doc?.title || 'Untitled',
             href: `/${doc?.slug}`,
           },
-          {title: 'Home', href: `/`},
+          // {title: 'Home', href: `/`},
+        ],
+      }),
+    }),
+    projet: defineLocations({
+      // Select one or more fields
+      select: {
+        title: 'title.fr',
+        slug: 'slug.current',
+        tag: 'tag.slug.current',
+      },
+      // Those fields are available in the resolve callback function
+      resolve: (doc) => ({
+        locations: [
+          {
+            title: doc?.title || 'Untitled',
+            href: `/${doc?.tag}/${doc?.slug}`,
+          },
+          // {title: 'Home', href: `/`},
         ],
       }),
     }),
