@@ -16,7 +16,6 @@ const sanity = useSanity()
 const shouldShow = computed(() => {
   const visualEditing = 'visualEditing' in sanity && sanity.visualEditing
 
-  // Only show the banner if preview mode is enabled and we are not in Presentation.
   // @ts-expect-error TODO: fix type testing within repo
   return (
     visualEditing && visualEditing?.isPreviewing.value && !visualEditing.inFrame
