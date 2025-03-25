@@ -4,7 +4,7 @@ const _sanitizeHref = (href: string) => {
   if (href.startsWith('http')) {
     return href
   }
-  return `https://${href}`
+  return `//${href}`
 }
 export const portableTextComponents: PortableTextComponents = {
   block: {
