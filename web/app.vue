@@ -4,12 +4,9 @@ import './assets/styles/index.scss'
 import Header from './components/Header.vue'
 import { onMounted, onUnmounted } from 'vue'
 import PreviewModeBanner from './components/PreviewModeBanner.vue'
-// import { useSanityVisualEditingState } from '@nuxtjs/sanity/runtime/composables/visual-editing.js'
-const route = useRoute()
-// const { enabled: previewEnabled, inFrame } = useSanityVisualEditingState()
+
 onMounted(() => {
   _format()
-
   window.addEventListener('resize', _format)
 })
 
@@ -57,15 +54,6 @@ function _format() {
 </script>
 
 <template>
-  <!-- <a
-    v-if="previewEnabled && !inFrame"
-    :href="`/preview/disable?redirect=${route.fullPath}`"
-    class="preview-toggle"
-  >
-    <span>Preview Enabled</span>
-    <span>Disable Preview</span>
-  </a> -->
-
   <div id="page">
     <Header />
     <main>

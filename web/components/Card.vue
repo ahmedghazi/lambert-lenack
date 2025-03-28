@@ -41,7 +41,7 @@ defineProps<{ input: Project }>()
   .header {
     text-align: center;
     transition: opacity 0.5s;
-    opacity: 1;
+    opacity: 0;
     transform: translateY(-3em);
     h2 {
       text-align: center;
