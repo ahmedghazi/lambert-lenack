@@ -20,7 +20,7 @@ if (data && data.value?.seo) {
 
 <template>
   <div class="content content--home">
-    <pre>{{ JSON.stringify(data?.seo, null, 2) }}</pre>
+    <!-- <pre>{{ JSON.stringify(data?.seo, null, 2) }}</pre> -->
     <ContentModules v-if="data && data.modules" :input="data.modules" />
   </div>
 </template>
