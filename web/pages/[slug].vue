@@ -8,16 +8,28 @@ const { data } = await useSanityQuery<PageModulaire>(query, {
   slug: route.params.slug,
 })
 
-if (data && data.value?.seo) {
-  const seo: Seo = data.value.seo
-  useSeoMeta({
-    title: `Lambert Lénack — ${seo?.metaTitle} | ${data?.value.title}`,
-    ogTitle: seo?.metaTitle,
-    ogDescription: seo?.metaDescription,
-    description: seo?.metaDescription,
-    ogImage: seo?.metaImage?.asset.url,
-  })
+if (!data.value) {
+  console.error('No data returned from Sanity query')
 }
+
+const pageData = data.value || ({} as PageModulaire)
+const seo = pageData.seo || ({} as Seo)
+const pageTitle = seo.metaTitle || pageData?.title?.fr || 'Lambert Lénack'
+
+useSeoMeta({
+  title: `Lambert Lénack — ${pageTitle}`,
+  ogTitle: pageTitle,
+  ogDescription: seo?.metaDescription || '',
+  description: seo?.metaDescription || '',
+  ogImage: seo?.metaImage?.asset?.url || '',
+})
+
+// Debug logging
+console.log('SEO Data:', {
+  title: pageTitle,
+  description: seo?.metaDescription,
+  image: seo?.metaImage?.asset?.url,
+})
 </script>
 
 <template>

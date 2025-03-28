@@ -7,20 +7,25 @@ import { portableTextComponents } from '~/utils/sanity-api/portableTextComponent
 const route = useRoute()
 // console.log(route.params)
 const query = groq`${projectQuery}`
-const { data } = await useSanityQuery<Project>(query, {
+const { data, refresh } = await useSanityQuery<Project>(query, {
   slug: route.params.slug,
 })
 
-if (data && data.value?.seo) {
-  const seo: Seo = data.value.seo
-  useSeoMeta({
-    title: `Lambert Lénack — ${seo?.metaTitle} | ${data?.value.title}`,
-    ogTitle: seo?.metaTitle,
-    ogDescription: seo?.metaDescription,
-    description: seo?.metaDescription,
-    ogImage: seo?.metaImage?.asset.url,
-  })
+if (!data.value) {
+  console.error('No data returned from Sanity query')
 }
+
+const pageData = data.value || ({} as Project)
+const seo = pageData.seo || ({} as Seo)
+const pageTitle = seo.metaTitle || pageData?.title?.fr || 'Lambert Lénack'
+
+useSeoMeta({
+  title: `Lambert Lénack — ${pageTitle}`,
+  ogTitle: pageTitle,
+  ogDescription: seo?.metaDescription || '',
+  description: seo?.metaDescription || '',
+  ogImage: seo?.metaImage?.asset?.url || '',
+})
 
 const isCredit = ref<boolean>(false)
 const toggleCredits = () => {

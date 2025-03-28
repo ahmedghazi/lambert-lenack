@@ -6,16 +6,21 @@ import { homeQuery } from '~/utils/sanity-api/queries'
 const query = groq`${homeQuery}`
 const { data, refresh } = await useSanityQuery<PageModulaire>(query)
 
-if (data && data.value?.seo) {
-  const seo: Seo = data.value.seo
-  useSeoMeta({
-    title: `Accueil — ${seo?.metaTitle} | ${data?.value.title}`,
-    ogTitle: seo?.metaTitle,
-    ogDescription: seo?.metaDescription,
-    description: seo?.metaDescription,
-    ogImage: seo?.metaImage?.asset.url,
-  })
+if (!data.value) {
+  console.error('No data returned from Sanity query')
 }
+
+const pageData = data.value || ({} as PageModulaire)
+const seo = pageData.seo || ({} as Seo)
+const pageTitle = seo.metaTitle || pageData?.title?.fr || 'Lambert Lénack'
+
+useSeoMeta({
+  title: ` ${pageTitle}`,
+  ogTitle: seo.metaTitle || pageTitle,
+  ogDescription: seo?.metaDescription || '',
+  description: seo?.metaDescription || '',
+  ogImage: seo?.metaImage?.asset?.url || '',
+})
 </script>
 
 <template>
