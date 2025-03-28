@@ -19,7 +19,7 @@ export const portableTextComponents: PortableTextComponents = {
       const rel = !value.href.startsWith('/')
         ? 'noreferrer noopener'
         : undefined
-      console.log('value.href', value.href)
+      // console.log('value.href', value.href)
       return h(
         'a',
         { href: _sanitizeHref(value.href), rel, target: '_blank' },
