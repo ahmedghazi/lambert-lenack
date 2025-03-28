@@ -37,9 +37,9 @@ watch(
 
 // const tl = gsap.timeline({ paused: true })
 const animeIn = () => {
-  gsap.fromTo(
+  gsap.to(
     '.nav-item',
-    { opacity: 0 },
+    // { opacity: 0 },
     {
       opacity: 1,
       duration: 0.5,
@@ -50,9 +50,9 @@ const animeIn = () => {
   )
 }
 const animeOut = () => {
-  gsap.fromTo(
+  gsap.to(
     '.nav-item',
-    { opacity: 1 },
+    // { opacity: 1 },
     {
       opacity: 0,
       duration: 0.5,

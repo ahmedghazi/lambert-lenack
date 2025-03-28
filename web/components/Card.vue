@@ -11,7 +11,7 @@ defineProps<{ input: Project }>()
       <img
         v-if="input.imageCover"
         class="visual"
-        :src="urlFor(input.imageCover).width(500).height(300).url()"
+        :src="urlFor(input.imageCover).width(500).height(500).url()"
         alt="Cover image"
       />
 
@@ -34,12 +34,15 @@ defineProps<{ input: Project }>()
     }
   }
   .visual {
-    margin-bottom: 19%;
+    /* margin-bottom: 19%; */
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
   }
   .header {
     text-align: center;
     transition: opacity 0.5s;
-    opacity: 0;
+    opacity: 1;
+    transform: translateY(-3em);
     h2 {
       text-align: center;
       line-height: 1.2;

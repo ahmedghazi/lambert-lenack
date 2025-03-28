@@ -105,11 +105,12 @@ const toggleCredits = () => {
   p {
     padding-right: 15px;
   }
-  .metas {
+  .metas ul {
     margin-top: 40px;
     column-count: 2;
     li {
       margin-bottom: 10px;
+      break-inside: avoid-column;
     }
   }
 }

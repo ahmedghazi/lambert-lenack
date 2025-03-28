@@ -3,24 +3,6 @@ import { portableTextComponents } from '~/utils/sanity-api/portableTextComponent
 import type { TextUI } from '../../types/schema'
 import { PortableText, type PortableTextComponents } from '@portabletext/vue'
 defineProps<{ input: TextUI }>()
-
-// const components: PortableTextComponents = {
-//   block: {
-//     'text-lg': (_, { slots }) =>
-//       h('p', { class: 'text-lg' }, slots.default?.()),
-//   },
-//   marks: {
-//     align_center: (_, { slots }) =>
-//       h('div', { class: 'text-center' }, slots.default?.()),
-
-//     linkExternal: ({ value }, { slots }) => {
-//       const rel = !value.href.startsWith('/')
-//         ? 'noreferrer noopener'
-//         : undefined
-//       return h('a', { href: value.href, rel }, slots.default?.())
-//     },
-//   },
-// }
 </script>
 
 <template>
@@ -38,9 +20,9 @@ defineProps<{ input: TextUI }>()
   </section>
 </template>
 
-<style lang="scss">
-.module {
-  padding-top: var(--space-xl);
+<style lang="scss" scoped>
+.module--textUI {
+  padding-top: calc(var(--space-xl) * 1.4);
 }
 .inner {
   max-width: 800px;

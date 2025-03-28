@@ -11,6 +11,9 @@ import {linkResolver} from './src/linkResolver'
 
 export const projectId = process.env.SANITY_STUDIO_PROJECT_ID!
 export const dataset = process.env.SANITY_STUDIO_DATASET!
+const remoteURL = 'https://lambert-lenack-web.vercel.app'
+const localURL = 'http://localhost:3000'
+const previewURL = window.location.hostname === 'localhost' ? localURL : remoteURL
 
 export default defineConfig({
   name: 'lambert-lenack',
@@ -26,7 +29,9 @@ export default defineConfig({
       title: 'Live preview',
       resolve: linkResolver,
       previewUrl: {
-        origin: process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000',
+        origin: previewURL,
+        // process.env.SANITY_STUDIO_PREVIEW_URL ||
+        // 'https://backoffice--lambert-lenack.sanity.studio',
         // preview: '/',
         previewMode: {
           enable: '/preview/enable',

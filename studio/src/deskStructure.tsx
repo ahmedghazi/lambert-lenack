@@ -62,7 +62,7 @@ export const structure = (S) =>
       //   .title('Infos')
       //   .schemaType('infos')
       //   .child(S.editor().title('Manifesto').schemaType('infos').documentId('infos')),
-      S.divider(),
+      // S.divider(),
 
       S.listItem()
         .title('Pages')

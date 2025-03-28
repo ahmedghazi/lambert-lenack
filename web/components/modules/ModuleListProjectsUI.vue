@@ -17,17 +17,32 @@ onMounted(() => {
 
 <template>
   <section class="module module--listProjectsUI">
-    <div class="grid grid-cols-1 gap-md md:grid-cols-4">
+    <div class="grid grid-cols-1- gap-y-md md:grid-cols-4">
       <Card v-for="item in input.items || []" :key="item._id" :input="item" />
     </div>
   </section>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .module {
   padding-top: var(--space-xl);
   article {
     opacity: 0;
+  }
+}
+@media screen and (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media screen and (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media screen and (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 </style>

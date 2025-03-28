@@ -21,7 +21,7 @@ export const linkResolver: PresentationPluginOptions['resolve'] = {
         ],
       }),
     }),
-    projet: defineLocations({
+    project: defineLocations({
       // Select one or more fields
       select: {
         title: 'title.fr',
