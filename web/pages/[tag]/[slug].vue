@@ -2,6 +2,7 @@
 import { PortableText } from '@portabletext/vue'
 import { projectQuery } from '~/utils/sanity-api/queries'
 import type { Project } from '~/types/schema'
+import { portableTextComponents } from '~/utils/sanity-api/portableTextComponents'
 
 const route = useRoute()
 // console.log(route.params)
@@ -36,6 +37,7 @@ const toggleCredits = () => {
                   <PortableText
                     v-if="item.val && item.val.fr"
                     :value="item.val.fr"
+                    :components="portableTextComponents"
                   />
                 </li>
               </ul>
@@ -125,6 +127,13 @@ const toggleCredits = () => {
   .footer {
     padding: 15px;
     z-index: 51;
+    h1 {
+      font-size: 10px;
+    }
+    span {
+      font-size: 14px;
+      top: -3px;
+    }
   }
 }
 </style>

@@ -25,7 +25,6 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .module {
-  padding-top: var(--space-xl);
   article {
     opacity: 0;
   }
@@ -41,6 +40,9 @@ onMounted(() => {
   }
 }
 @media screen and (min-width: 1200px) {
+  .module {
+    padding-top: var(--space-xl);
+  }
   .grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }

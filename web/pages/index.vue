@@ -1,10 +1,21 @@
 <script setup lang="ts">
 import ContentModules from '~/components/ContentModules.vue'
-import type { PageModulaire, Project } from '~/types/schema'
+import type { PageModulaire, Project, Seo } from '~/types/schema'
 import { homeQuery } from '~/utils/sanity-api/queries'
 
 const query = groq`${homeQuery}`
 const { data, refresh } = await useSanityQuery<PageModulaire>(query)
+
+if (data && data.seo) {
+  const seo: Seo = data.seo
+  useSeoMeta({
+    title: seo?.metaTitle,
+    ogTitle: seo?.metaTitle,
+    ogDescription: seo?.metaDescription,
+    description: seo?.metaDescription,
+    ogImage: seo?.metaImage?.asset.url,
+  })
+}
 </script>
 
 <template>

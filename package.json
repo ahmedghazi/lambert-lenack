@@ -7,10 +7,11 @@
     "studio"
   ],
   "scripts": {
-    "dev": "concurrently \"npm run dev --workspace=web\" \"npm run dev --workspace=studio\"",
-    "format": "prettier --cache --write .",
     "d": "git add . && git commit -m 'let s gooo' && git push",
-    "dm": "func() { git add . && git commit -m \"$1\" && git push; }; func"
+    "dev": "concurrently \"npm run dev --workspace=web\" \"npm run dev --workspace=studio\"",
+    "dm": "func() { git add . && git commit -m \"$1\" && git push; }; func",
+    "format": "prettier --cache --write .",
+    "w": "concurrently \"npm run dev --workspace=web\" \"npm run dev --workspace=studio\""
   },
   "prettier": {
     "plugins": [

@@ -25,7 +25,7 @@ watch(
 watch(
   () => isOpen.value,
   (value) => {
-    console.log(value)
+    // console.log(value)
     if (value) {
       animeIn()
     } else {
@@ -35,33 +35,24 @@ watch(
   { deep: true },
 )
 
-// const tl = gsap.timeline({ paused: true })
 const animeIn = () => {
-  gsap.to(
-    '.nav-item',
-    // { opacity: 0 },
-    {
-      opacity: 1,
-      duration: 0.5,
-      stagger: {
-        each: 0.05,
-      },
+  gsap.to('.nav-item', {
+    opacity: 1,
+    duration: 0.5,
+    stagger: {
+      each: 0.05,
     },
-  )
+  })
 }
 const animeOut = () => {
-  gsap.to(
-    '.nav-item',
-    // { opacity: 1 },
-    {
-      opacity: 0,
-      duration: 0.5,
-      stagger: {
-        each: 0.05,
-        from: 'end',
-      },
+  gsap.to('.nav-item', {
+    opacity: 0,
+    duration: 0.5,
+    stagger: {
+      each: 0.05,
+      from: 'end',
     },
-  )
+  })
 }
 
 const animeOutDelayed = () => {
