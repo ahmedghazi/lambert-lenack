@@ -28,12 +28,16 @@ export default defineType({
     select: {
       title: `title.${baseLanguage}`,
       slug: 'slug',
+      homePage: 'homePage',
+      seo: 'seo',
     },
     prepare(selection) {
-      const {title, slug} = selection
+      const {title, slug, homePage, seo} = selection
+      console.log('seo')
       return {
-        title: title,
-        subtitle: `/${slug.current}`,
+        title: seo ? seo.metaTitle : `${title} (Veuillez choisir un titre dans l'onglet SEO)`,
+        media: seo && seo.image && seo.image,
+        subtitle: homePage ? '/' : `/${slug.current}`,
       }
     },
   },

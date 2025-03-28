@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PortableText } from '@portabletext/vue'
 import { projectQuery } from '~/utils/sanity-api/queries'
-import type { Project } from '~/types/schema'
+import type { Project, Seo } from '~/types/schema'
 import { portableTextComponents } from '~/utils/sanity-api/portableTextComponents'
 
 const route = useRoute()
@@ -10,6 +10,17 @@ const query = groq`${projectQuery}`
 const { data } = await useSanityQuery<Project>(query, {
   slug: route.params.slug,
 })
+
+if (data && data.value?.seo) {
+  const seo: Seo = data.value.seo
+  useSeoMeta({
+    title: `Lambert Lénack — ${seo?.metaTitle} | ${data?.value.title}`,
+    ogTitle: seo?.metaTitle,
+    ogDescription: seo?.metaDescription,
+    description: seo?.metaDescription,
+    ogImage: seo?.metaImage?.asset.url,
+  })
+}
 
 const isCredit = ref<boolean>(false)
 const toggleCredits = () => {

@@ -91,29 +91,22 @@ export default defineType({
       of: [{type: 'image'}],
       group: 'editorial',
     }),
-
-    // defineField({
-    //   name: 'relatedProjects',
-    //   title: 'Projets liés',
-    //   type: 'array',
-    //   of: [{type: 'reference', to: [{type: 'project'}]}],
-    //   group: 'editorial',
-    // }),
   ],
 
   preview: {
     select: {
       title: `title.${baseLanguage}`,
-      slug: 'slug',
-      image: 'imageCover',
+      slug: 'slug.current',
+      seo: 'seo',
+      tag: 'tag.slug.current',
     },
     prepare(selection) {
-      const {title, slug, image} = selection
-      // console.log(images)
+      const {title, slug, seo, tag} = selection
+      console.log('seo')
       return {
-        title: title,
-        subtitle: `/project/${slug.current}`,
-        media: image,
+        title: seo ? seo.metaTitle : `${title} (Veuillez choisir un titre dans l'onglet SEO)`,
+        media: seo && seo.image && seo.image,
+        subtitle: `/${tag}/${slug}`,
       }
     },
   },

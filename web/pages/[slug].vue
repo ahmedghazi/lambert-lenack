@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PageModulaire } from '~/types/schema'
+import type { PageModulaire, Seo } from '~/types/schema'
 import { pageModulaireQuery } from '~/utils/sanity-api/queries'
 
 const route = useRoute()
@@ -8,10 +8,16 @@ const { data } = await useSanityQuery<PageModulaire>(query, {
   slug: route.params.slug,
 })
 
-// definePageMeta({
-//   title: data && data.seo ? data.seo.metaTitle : 'title',
-//   description: 'desc',
-// })
+if (data && data.value?.seo) {
+  const seo: Seo = data.value.seo
+  useSeoMeta({
+    title: `Lambert Lénack — ${seo?.metaTitle} | ${data?.value.title}`,
+    ogTitle: seo?.metaTitle,
+    ogDescription: seo?.metaDescription,
+    description: seo?.metaDescription,
+    ogImage: seo?.metaImage?.asset.url,
+  })
+}
 </script>
 
 <template>
