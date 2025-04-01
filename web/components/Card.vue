@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { Project } from '~/types/schema'
-import { formatDate, urlFor } from '~/utils'
+import { urlFor } from '~/utils'
 
 defineProps<{ input: Project }>()
 </script>

@@ -2,7 +2,7 @@ import imageUrlBuilder from '@sanity/image-url'
 import type { Image } from '@sanity/types'
 import type { Article, PageModulaire, Project } from '~/types/schema'
 
-export function formatDate(date: string) {
+export function _formatDate(date: string) {
   return new Date(date).toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',

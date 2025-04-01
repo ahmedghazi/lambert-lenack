@@ -2,22 +2,34 @@
 export default defineNuxtConfig({
   modules: [
     '@nuxtjs/sanity',
-    [
-      '@nuxtjs/google-fonts',
-      {
-        families: {
-          'IBM Plex Mono': [500, 700],
-          Inter: [500, 700, 800],
-          'PT Serif': [400, 700],
-          download: true,
-          inject: true,
-        },
-      },
-    ],
+    // [
+    //   '@nuxtjs/google-fonts',
+    //   {
+    //     families: {
+    //       'IBM Plex Mono': [500, 700],
+    //       Inter: [500, 700, 800],
+    //       'PT Serif': [400, 700],
+    //       download: true,
+    //       inject: true,
+    //     },
+    //   },
+    // ],
     '@nuxtjs/tailwindcss',
     'nuxt-swiper',
+    // '@nuxtjs/google-analytics',
   ],
 
+  runtimeConfig: {
+    public: {
+      googleAnalytics: {
+        id: 'UA-57636046-1',
+        debug: {
+          enabled: true,
+          sendHitTask: true,
+        },
+      },
+    },
+  },
   sanity: {
     // minimal: false,
     projectId: process.env.NUXT_SANITY_PROJECT_ID,
