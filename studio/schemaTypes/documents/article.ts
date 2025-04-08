@@ -1,6 +1,7 @@
 import {defineField, defineType} from 'sanity'
 import {FaFeather} from 'react-icons/fa'
 import {baseLanguage} from '../locale/supportedLanguages'
+import {media} from 'sanity-plugin-media'
 
 export default defineType({
   name: 'article',
@@ -71,7 +72,8 @@ export default defineType({
   preview: {
     select: {
       title: `title.${baseLanguage}`,
-      subtitle: 'slug.current',
+      subtitle: 'date',
+      media: 'imageCover',
     },
   },
 })

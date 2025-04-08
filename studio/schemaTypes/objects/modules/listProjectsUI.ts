@@ -27,12 +27,16 @@ export default defineField({
   preview: {
     select: {
       title: 'title',
+      media: 'items.0.imageCover',
+      length: 'items.length',
     },
     prepare(selection) {
-      const {title} = selection
+      const {title, media, length} = selection
       return {
-        title: title,
-        subtitle: 'List Projets UI',
+        title: 'List Projets UI',
+        // subtitle: 'List Projets UI',
+        // subtitle: `${length} projets`,
+        media: media,
       }
     },
   },

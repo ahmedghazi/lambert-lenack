@@ -13,6 +13,10 @@ const { data, refresh } = await useSanityQuery<Project>(query, {
 
 if (!data.value) {
   console.error('No data returned from Sanity query')
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Désolé la page demandée n'existe pas.",
+  })
 }
 
 const pageData = data.value || ({} as Project)

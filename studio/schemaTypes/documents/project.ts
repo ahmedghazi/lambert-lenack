@@ -60,12 +60,12 @@ export default defineType({
       group: 'editorial',
     }),
 
-    // defineField({
-    //   name: 'chapo',
-    //   title: 'Chapo',
-    //   type: 'localeBlockContent',
-    //   group: 'editorial',
-    // }),
+    defineField({
+      name: 'text',
+      title: 'Texte',
+      type: 'localeBlockContent',
+      group: 'editorial',
+    }),
 
     defineField({
       name: 'metas',
@@ -73,13 +73,6 @@ export default defineType({
       type: 'array',
       of: [{type: 'keyVal'}],
       // description: 'fiche technique',
-      group: 'editorial',
-    }),
-
-    defineField({
-      name: 'text',
-      title: 'Texte',
-      type: 'localeBlockContent',
       group: 'editorial',
     }),
 

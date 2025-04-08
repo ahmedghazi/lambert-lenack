@@ -1,6 +1,8 @@
-@use "../variables";
+@use '../variables';
 
-.page-project {
+.content--project {
+  overflow-y: hidden;
+  // background-color: red;
   @media all and (max-width: variables.$md) {
   }
 }

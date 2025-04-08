@@ -205,18 +205,18 @@ export interface Project extends SanityDocument {
   }
 
   /**
-   * fiche technique — `array`
-   *
-   *
-   */
-  metas?: Array<SanityKeyed<KeyVal>>
-
-  /**
    * Texte — `localeBlockContent`
    *
    *
    */
   text?: LocaleBlockContent
+
+  /**
+   * fiche technique — `array`
+   *
+   *
+   */
+  metas?: Array<SanityKeyed<KeyVal>>
 
   /**
    * Slider — `array`

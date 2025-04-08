@@ -27,6 +27,22 @@ onMounted(() => {
   // Read more about Swiper instance: https://swiperjs.com/swiper-api#methods--properties
   // console.log(swiper.instance)
 })
+/*
+direction: "horizontal",
+centeredSlides: !0,
+preventClicks: !1,
+preventClicksPropagation: !1,
+speed: 0,
+allowTouchMove: !0,
+followFinger: !1,
+pagination: {
+    el: ".pagination",
+    type: "fraction"
+},
+mousewheel: {
+    sensitivity: 500
+},
+*/
 </script>
 
 <template>
@@ -42,6 +58,11 @@ onMounted(() => {
       :keyboard="true"
       :lazyPreloadPrevNext="0"
       :loop="true"
+      :mousewheel="{
+        enabled: true,
+        sensitivity: 0.1,
+        thresholdTime: 200,
+      }"
     >
       <swiper-slide v-for="(slide, idx) in props.slider" :key="idx">
         <img
