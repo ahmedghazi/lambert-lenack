@@ -61,7 +61,7 @@ mousewheel: {
       :mousewheel="{
         enabled: true,
         sensitivity: 0.1,
-        thresholdTime: 200,
+        thresholdTime: 400,
       }"
     >
       <swiper-slide v-for="(slide, idx) in props.slider" :key="idx">
