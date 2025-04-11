@@ -92,13 +92,14 @@ export default defineType({
       slug: 'slug.current',
       seo: 'seo',
       tag: 'tag.slug.current',
+      imageCover: 'imageCover',
     },
     prepare(selection) {
-      const {title, slug, seo, tag} = selection
-      console.log('seo')
+      const {title, slug, seo, tag, imageCover} = selection
+
       return {
         title: seo ? seo.metaTitle : `${title} (Veuillez choisir un titre dans l'onglet SEO)`,
-        media: seo && seo.image && seo.image,
+        media: seo && seo.image ? seo.image : imageCover,
         subtitle: `/${tag}/${slug}`,
       }
     },

@@ -1,5 +1,4 @@
 import {defineLocations, PresentationPluginOptions} from 'sanity/presentation'
-import pageModulaire from '../schemaTypes/documents/pageModulaire'
 
 export const linkResolver: PresentationPluginOptions['resolve'] = {
   locations: {

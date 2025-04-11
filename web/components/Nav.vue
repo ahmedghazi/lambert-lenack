@@ -9,7 +9,7 @@ const { data } = await useSanityQuery<Settings>(query, {})
 
 const isOpen = ref<boolean>(false)
 const toggle = (val: boolean) => {
-  console.log('toggle', val)
+  // console.log('toggle', val)
   isOpen.value = val
 }
 
@@ -26,7 +26,7 @@ watch(
 watch(
   () => isOpen.value,
   (value) => {
-    console.log(value)
+    // console.log(value)
     if (value) {
       animeIn()
     } else {

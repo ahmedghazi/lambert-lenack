@@ -22,6 +22,11 @@ export default defineField({
           to: [{type: 'project'}],
         },
       ],
+      options: {
+        // layout: 'grid',
+        sortable: true,
+        // direction: 'horizontal',
+      },
     }),
   ],
   preview: {

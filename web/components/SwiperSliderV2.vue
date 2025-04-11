@@ -1,6 +1,13 @@
-<script setup lang="ts">
-import { set } from '#app/compat/capi'
+<!-- <script setup lang="ts">
 import type { SanityImageAsset, SanityReference } from 'sanity-codegen'
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue'
+import { Navigation, Pagination, Mousewheel } from 'swiper/modules'
+
+import 'swiper/css'
+import 'swiper/css/pagination'
+import type { Swiper as _Swiper } from 'swiper/types'
+
+const swiperInstance = ref<_Swiper | null>(null)
 
 const props = defineProps<{
   slider?:
@@ -12,59 +19,52 @@ const props = defineProps<{
   goToCredits?: boolean
 }>()
 const length: number = props.slider.length
-const swiperRef = ref(null)
-const swiperInstance = ref(null)
-const swiper = useSwiper(swiperRef)
 
 watchEffect(() => {
+  if (!swiperInstance.value) {
+    return
+  }
   if (props.goToCredits) {
-    swiper.to(length)
+    swiperInstance.value.slideTo(length)
   } else {
-    swiper.to(0)
+    swiperInstance.value.slideTo(0)
   }
 })
 onMounted(() => {
   // Read more about Swiper instance: https://swiperjs.com/swiper-api#methods--properties
-
-  setTimeout(() => {
-    const swiperEl = document.querySelector('swiper-container')
-    _handleSlideChange(swiperEl)
-    if (swiperEl) {
-      swiperEl.addEventListener('swiperslidechange', ({ target }) => {
-        _handleSlideChange(swiperEl)
-      })
-    }
-  }, 2000)
+  // swiper.instance.on('slideChange', function () {
+  //   console.log('slide changed')
+  // })
 })
 
-const _handleSlideChange = (swiperEl: any) => {
-  const currentSlide = swiperEl.querySelector('.swiper-slide-active img')
-  if (!currentSlide) return
-  const bounding = currentSlide.getBoundingClientRect()
-  const leftOver = (window.innerWidth - bounding.width) / 2
-  const controls: NodeListOf<HTMLButtonElement> =
-    document.querySelectorAll('.btn-controls')
-  controls.forEach((control: HTMLButtonElement) => {
-    control.style.width = `${leftOver}px`
-  })
+const onInit = (swiper: any) => {
+  console.log('swiper initialized')
+  swiperInstance.value = swiper
+  console.log(swiper)
 }
 
-// const onSlideChange = () => {
-//   console.log('slide changed', swiper)
-//   const currentSlide = swiper.realIndex
-//   console.log('currentSlide', currentSlide)
-// }
+const onSlideChange = (e: any) => {
+  console.log('slide changed', e)
+}
 
-// const onInit = (swiper: any) => {
-//   console.log('swiper initialized')
-//   swiperInstance.value = swiper
-// }
+const handlePrev = () => {
+  if (swiperInstance.value) {
+    swiperInstance.value.slidePrev()
+  }
+}
+
+const handleNext = () => {
+  console.log('next')
+  if (swiperInstance.value) {
+    swiperInstance.value.slideNext()
+  }
+}
 </script>
 
 <template>
   <ClientOnly>
-    <swiper-container
-      ref="swiperRef"
+    <Swiper
+      :modules="[Navigation, Pagination, Mousewheel]"
       :speed="0"
       :pagination="{
         type: 'fraction',
@@ -76,35 +76,35 @@ const _handleSlideChange = (swiperEl: any) => {
       :loop="true"
       :mousewheel="{
         enabled: true,
+        // sensitivity: 0.1,
         thresholdTime: 400,
       }"
-      :onAny="
-        (event) => {
-          console.log('event', event)
-        }
-      "
+      @swiper="onInit"
+      @slideChange="onSlideChange"
     >
-      <swiper-slide v-for="(slide, idx) in props.slider" :key="idx">
+      <SwiperSlide v-for="(slide, idx) in props.slider" :key="idx">
         <img
           v-if="slide"
           class="visual"
           :src="$urlFor(slide).width(1000).height(1000).url()"
           alt="Cover image"
         />
-      </swiper-slide>
-      <swiper-slide>
+      </SwiperSlide>
+      <SwiperSlide>
         <slot name="text" />
-      </swiper-slide>
-    </swiper-container>
+      </SwiperSlide>
+    </Swiper>
   </ClientOnly>
 
-  <button class="btn-controls btn--prev" @click="swiper.prev()">Prev</button>
-  <button class="btn-controls btn--next" @click="swiper.next()">Next</button>
+  <button class="btn--prev" @click="handlePrev">Prev</button>
+  <button class="btn--next" @click="handleNext">Next</button>
   <div class="swiper-pagination"></div>
+  <Pagination type="fraction" />
 </template>
 
 <style lang="scss">
-swiper-slide {
+swiper-slide,
+.swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -118,9 +118,6 @@ swiper-slide {
     object-fit: contain;
     width: 100%;
     height: 100%;
-    width: auto;
-    height: 100%;
-    object-fit: unset;
   }
 }
 .swiper-pagination {
@@ -131,12 +128,11 @@ swiper-slide {
 
 button {
   position: fixed;
-  width: 30%;
+  width: 38%;
   height: calc(var(--vh) * 100);
   top: 0;
-  text-indent: -9999px;
+  /* text-indent: -9999px; */
   z-index: 50;
-  /* background: red; */
   &.btn--prev {
     left: 0;
   }
@@ -150,9 +146,10 @@ button {
     right: 15px !important;
     bottom: 15px !important;
   }
-  swiper-slide {
+  swiper-slide,
+  .swiper-slide {
     /* background-color: red; */
     height: calc(var(--vh) * 100);
   }
 }
-</style>
+</style> -->

@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { PortableText } from '@portabletext/vue'
 import { projectQuery } from '~/utils/sanity-api/queries'
 import type { Project, Seo } from '~/types/schema'
+import { PortableText } from '@portabletext/vue'
 import { portableTextComponents } from '~/utils/sanity-api/portableTextComponents'
+// import SwiperSliderV2 from '~/components/SwiperSliderV2.vue'
+import SwiperSlider from '~/components/SwiperSlider.vue'
 
 const route = useRoute()
 // console.log(route.params)

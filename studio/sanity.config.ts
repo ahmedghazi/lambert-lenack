@@ -6,6 +6,7 @@ import schemaTypes from './schemaTypes'
 import {structure} from './src/deskStructure'
 import {media} from 'sanity-plugin-media'
 import {linkResolver} from './src/linkResolver'
+import {resolveProductionUrlAlt} from './src/actions/resolveProductionUrlAlt'
 
 // import {schemaTypes} from './schemas'
 
@@ -20,7 +21,6 @@ export default defineConfig({
   title: 'Lambert Lénack',
   projectId,
   dataset,
-  // plugins: [structureTool({structure}), visionTool(), ...(isDev ? devOnlyPlugins : []), media()],
 
   plugins: [
     structureTool({structure}),
@@ -43,5 +43,13 @@ export default defineConfig({
   ],
   schema: {
     types: schemaTypes,
+  },
+  document: {
+    productionUrl: async (prev, context) => {
+      const {document} = context
+
+      return resolveProductionUrlAlt(document)
+    },
+    // actions: [resolveProductionUrl],
   },
 })
