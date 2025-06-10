@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { set } from '#app/compat/capi'
+// import { set } from '#app/compat/capi'
 import type { SanityImageAsset, SanityReference } from 'sanity-codegen'
 
 const props = defineProps<{
@@ -15,14 +15,23 @@ const length: number = props.slider.length
 const swiperRef = ref(null)
 const swiperInstance = ref(null)
 const swiper = useSwiper(swiperRef)
+let prevSlide = 0
 
+// console.log(props.goToCredits, length, prevSlide, swiperRef)
 watchEffect(() => {
   if (props.goToCredits) {
-    swiper.to(length)
+    const currentSliderIndex = document.querySelector(
+      '.swiper-pagination-current',
+    ).innerText
+    if (currentSliderIndex) prevSlide = Number(currentSliderIndex) - 1
+    console.log(prevSlide)
+
+    swiper.to(props.slider.length)
   } else {
-    swiper.to(0)
+    swiper.to(prevSlide)
   }
 })
+
 onMounted(() => {
   // Read more about Swiper instance: https://swiperjs.com/swiper-api#methods--properties
 
@@ -38,9 +47,15 @@ onMounted(() => {
 })
 
 const _handleSlideChange = (swiperEl: any) => {
-  const currentSlide = swiperEl.querySelector('.swiper-slide-active img')
+  // console.log(swiperEl)
+  const currentSlide = swiperEl.querySelector('.swiper-slide-active')
   if (!currentSlide) return
-  const bounding = currentSlide.getBoundingClientRect()
+
+  // console.log({ currentSliderIndex })
+  const currentSlideImg = currentSlide.querySelector('img')
+  if (!currentSlideImg) return
+
+  const bounding = currentSlideImg.getBoundingClientRect()
   const leftOver = (window.innerWidth - bounding.width) / 2
   const controls: NodeListOf<HTMLButtonElement> =
     document.querySelectorAll('.btn-controls')

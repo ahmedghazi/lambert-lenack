@@ -55,7 +55,7 @@ const toggleCredits = () => {
             <div class="metas">
               <ul>
                 <li v-for="(item, idx) in data.metas" :key="idx">
-                  {{ item.key }}:
+                  {{ item.key }}
                   <PortableText
                     v-if="item.val && item.val.fr"
                     :value="item.val.fr"
@@ -70,8 +70,8 @@ const toggleCredits = () => {
     </div>
 
     <div class="footer">
-      <div class="inner">
-        <h1 v-if="data.title" @click="toggleCredits">{{ data.title.fr }}</h1>
+      <div class="inner" @click="toggleCredits">
+        <h1 v-if="data.title">{{ data.title.fr }}</h1>
         <span v-if="!isCredit">+</span>
       </div>
     </div>
