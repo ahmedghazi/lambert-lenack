@@ -23,7 +23,7 @@ watchEffect(() => {
   if (props.goToCredits) {
     swiper.to(props.slider.length)
   } else {
-    swiper.to(prevSlide < length ? prevSlide : 0)
+    swiper.to(prevSlide)
   }
 })
 
@@ -58,10 +58,10 @@ const _storeCurrentIndex = () => {
     const currentSliderIndex = Number(
       document.querySelector('.swiper-pagination-current').innerText,
     )
-    console.log({ currentSliderIndex })
-    if (currentSliderIndex && currentSliderIndex !== length)
+    if (currentSliderIndex && currentSliderIndex < length)
       prevSlide = Number(currentSliderIndex) - 1
-  }, 250)
+    console.log({ currentSliderIndex, prevSlide })
+  }, 0)
 }
 
 const _handleSlideChange = (swiperEl: any) => {
