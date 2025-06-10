@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // import { set } from '#app/compat/capi'
 import type { SanityImageAsset, SanityReference } from 'sanity-codegen'
+import { watch, ref, computed } from 'vue'
 
 const props = defineProps<{
   slider?:
@@ -20,17 +21,22 @@ let prevSlide = 0
 // console.log(props.goToCredits, length, prevSlide, swiperRef)
 watchEffect(() => {
   if (props.goToCredits) {
-    const currentSliderIndex = document.querySelector(
-      '.swiper-pagination-current',
-    ).innerText
-    if (currentSliderIndex) prevSlide = Number(currentSliderIndex) - 1
-    console.log(prevSlide)
-
     swiper.to(props.slider.length)
   } else {
-    swiper.to(prevSlide)
+    swiper.to(prevSlide < length ? prevSlide : 0)
   }
 })
+
+// watch(props, () => {
+//   console.log(props.goToCredits, length)
+
+//   if (props.goToCredits) {
+//     swiper.to(length)
+//   } else {
+//     swiper.to(prevSlide)
+//   }
+//   console.log(prevSlide)
+// })
 
 onMounted(() => {
   // Read more about Swiper instance: https://swiperjs.com/swiper-api#methods--properties
@@ -41,10 +47,22 @@ onMounted(() => {
     if (swiperEl) {
       swiperEl.addEventListener('swiperslidechange', ({ target }) => {
         _handleSlideChange(swiperEl)
+        _storeCurrentIndex()
       })
     }
   }, 2000)
 })
+
+const _storeCurrentIndex = () => {
+  setTimeout(() => {
+    const currentSliderIndex = Number(
+      document.querySelector('.swiper-pagination-current').innerText,
+    )
+    console.log({ currentSliderIndex })
+    if (currentSliderIndex && currentSliderIndex !== length)
+      prevSlide = Number(currentSliderIndex) - 1
+  }, 250)
+}
 
 const _handleSlideChange = (swiperEl: any) => {
   // console.log(swiperEl)
@@ -88,7 +106,7 @@ const _handleSlideChange = (swiperEl: any) => {
       :autoplay="false"
       :keyboard="true"
       :lazyPreloadPrevNext="0"
-      :loop="true"
+      :loop="false"
       :mousewheel="{
         enabled: true,
         thresholdTime: 400,
