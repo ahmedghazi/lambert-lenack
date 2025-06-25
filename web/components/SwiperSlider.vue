@@ -186,6 +186,9 @@ button {
   swiper-slide {
     /* background-color: red; */
     height: calc(var(--vh) * 100);
+    img {
+      object-fit: contain;
+    }
   }
 }
 </style>
