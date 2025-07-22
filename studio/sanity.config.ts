@@ -12,7 +12,7 @@ import {resolveProductionUrlAlt} from './src/actions/resolveProductionUrlAlt'
 
 export const projectId = process.env.SANITY_STUDIO_PROJECT_ID!
 export const dataset = process.env.SANITY_STUDIO_DATASET!
-const remoteURL = 'https://lambert-lenack-web.vercel.app'
+const remoteURL = 'https://www.lambertlenack.com'
 const localURL = 'http://localhost:3000'
 const previewURL = window.location.hostname === 'localhost' ? localURL : remoteURL
 

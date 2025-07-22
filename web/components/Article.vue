@@ -10,7 +10,7 @@ defineProps<{ input: Article }>()
     <img
       v-if="input.imageCover"
       class="visual"
-      :src="urlFor(input.imageCover).width(500).url()"
+      :src="urlFor(input.imageCover).width(2000).url()"
       alt="Cover image"
     />
 

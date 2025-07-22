@@ -3,8 +3,8 @@ import type { Image } from '@sanity/types'
 import type { Article, PageModulaire, Project } from '~/types/schema'
 
 export function _formatDate(date: string) {
-  return new Date(date).toLocaleDateString('en-US', {
-    month: 'long',
+  return new Date(date).toLocaleDateString('fr-FR', {
+    month: 'numeric',
     day: 'numeric',
     year: 'numeric',
   })
