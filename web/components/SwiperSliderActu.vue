@@ -1,18 +1,23 @@
 <script setup lang="ts">
 // import { set } from '#app/compat/capi'
-import type { SanityImageAsset, SanityReference } from 'sanity-codegen'
+import type {
+  SanityImageAsset,
+  SanityKeyedReference,
+  SanityReference,
+} from 'sanity-codegen'
 import { watch, ref, computed } from 'vue'
+import type { Article } from '~/types/schema'
 
 const props = defineProps<{
-  slider?:
-    | Array<{
-        _type: 'image'
-        asset: SanityReference<SanityImageAsset>
-      }>
-    | any
-  goToCredits?: boolean
+  // slider?:
+  //   | Array<{
+  //       _type: 'image'
+  //       asset: SanityReference<SanityImageAsset>
+  //     }>
+  //   | any
+  slides?: Array<SanityKeyedReference<Article>> | any
 }>()
-const length: number = props.slider.length
+// const length: number = props.slider.length
 const swiperRef = ref(null)
 const swiperInstance = ref(null)
 const swiper = useSwiper(swiperRef)
@@ -20,11 +25,11 @@ let prevSlide = 0
 
 // console.log(props.goToCredits, length, prevSlide, swiperRef)
 watchEffect(() => {
-  if (props.goToCredits) {
-    swiper.to(props.slider.length)
-  } else {
-    swiper.to(prevSlide)
-  }
+  // if (props.goToCredits) {
+  //   swiper.to(props.slider.length)
+  // } else {
+  //   swiper.to(prevSlide)
+  // }
 })
 
 onMounted(() => {
@@ -82,7 +87,7 @@ const _handleSlideChange = (swiperEl: any) => {
       :autoplay="false"
       :keyboard="true"
       :lazyPreloadPrevNext="0"
-      :loop="false"
+      :loop="true"
       :mousewheel="{
         enabled: true,
         thresholdTime: 400,
@@ -93,16 +98,24 @@ const _handleSlideChange = (swiperEl: any) => {
         }
       "
     >
-      <swiper-slide v-for="(slide, idx) in props.slider" :key="idx">
+      <swiper-slide v-for="(slide, idx) in props.slides" :key="idx">
         <img
-          v-if="slide"
+          v-if="slide && slide.imageCover"
           class="visual"
-          :src="$urlFor(slide).width(2000).height(2000).url()"
+          :src="$urlFor(slide.imageCover).width(2000).height(2000).url()"
           alt="Cover image"
         />
-      </swiper-slide>
-      <swiper-slide>
-        <slot name="text" />
+        <div class="footer">
+          <h2 v-if="slide.title && slide.title.fr" class="title">
+            {{ slide.title.fr }}
+          </h2>
+          <NuxtLink
+            v-if="slide.link && slide.link.link && slide.link.label"
+            :to="_linkResolver(slide.link?.link)"
+          >
+            {{ slide.link.label.fr }}
+          </NuxtLink>
+        </div>
       </swiper-slide>
     </swiper-container>
   </ClientOnly>
@@ -115,21 +128,43 @@ const _handleSlideChange = (swiperEl: any) => {
 <style lang="scss">
 swiper-slide {
   display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: calc(var(--vh) * 100 - calc(var(--space-xxl)));
-  width: calc(100% - 340px);
+  justify-content: space-between;
+  flex-direction: column;
+  height: calc(var(--vh) * 100 - var(--space-xxl) / 2);
   width: calc(100% - var(--space-xxl));
-
   img {
     object-fit: cover;
     object-fit: contain;
     width: 100%;
-    height: 100%;
+    height: calc(var(--vh) * 100 - calc(var(--space-xxl)));
+
     width: auto;
-    height: 100%;
     object-fit: unset;
+  }
+  .footer {
+    padding: var(--space-sm);
+    height: calc(var(--space-xxl) / 2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-transform: uppercase;
+    gap: 0.3rem;
+    .inner {
+      display: inline-block;
+    }
+    h2 {
+      font-size: 18px;
+      font-weight: normal;
+      line-height: 1;
+      /* margin: 0 0 15px; */
+    }
+    span {
+      position: absolute;
+      right: -1.4em;
+      top: -0.222em;
+      font-size: 1.333em;
+    }
   }
 }
 .swiper-pagination {
@@ -164,6 +199,17 @@ button {
     height: calc(var(--vh) * 100);
     img {
       object-fit: contain;
+    }
+    .footer {
+      padding: 15px;
+      z-index: 51;
+      h1 {
+        font-size: 10px;
+      }
+      span {
+        font-size: 14px;
+        top: -3px;
+      }
     }
   }
 }

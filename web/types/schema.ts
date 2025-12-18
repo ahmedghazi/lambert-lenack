@@ -153,6 +153,7 @@ export interface PageModulaire extends SanityDocument {
     | SanityKeyed<TextUI>
     | SanityKeyed<ListProjectsUI>
     | SanityKeyed<ListArticlesUI>
+    | SanityKeyed<SliderArticlesUI>
   >
 }
 
@@ -493,6 +494,23 @@ export type ListProjectsUI = {
 
 export type ListArticlesUI = {
   _type: 'listArticlesUI'
+  /**
+   * title — `string`
+   *
+   *
+   */
+  title?: string
+
+  /**
+   * items — `array`
+   *
+   *
+   */
+  items?: Array<SanityKeyedReference<Article>>
+}
+
+export type SliderArticlesUI = {
+  _type: 'sliderArticlesUI'
   /**
    * title — `string`
    *

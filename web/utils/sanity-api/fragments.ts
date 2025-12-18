@@ -101,9 +101,32 @@ export const listArticlesUI = `
 	}
 `
 
+export const sliderArticlesUI = `
+	_type == 'sliderArticlesUI' => {
+		...,
+		items[]->{
+			title,
+			text,
+			date,
+			imageCover{
+				...,
+				asset->
+			},
+			link{
+				...,
+				link->{
+					_type,
+					slug,
+      	},
+			}
+		},
+	}
+`
+
 export const modules = `
 	...,
 	${textUI},
 	${listProjectsUI},
-	${listArticlesUI}
+	${listArticlesUI},
+	${sliderArticlesUI}
 `

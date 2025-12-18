@@ -7,4 +7,5 @@ export default [
   {type: 'textUI'},
   {type: 'listProjectsUI'},
   {type: 'listArticlesUI'},
+  {type: 'sliderArticlesUI'},
 ]

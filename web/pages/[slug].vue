@@ -45,6 +45,9 @@ console.log('SEO Data:', {
 <style scoped>
 .content {
   padding: calc(var(--space-xxl) / 2) var(--space-xxl);
+  &:has(.module--list-articles-ui) {
+    padding-bottom: 0;
+  }
 }
 @media (max-width: 800px) {
   .content {

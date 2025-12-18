@@ -6,8 +6,14 @@ import { settingsQuery } from '~/utils/sanity-api/queries'
 
 const query = groq`${settingsQuery}`
 const { data } = await useSanityQuery<Settings>(query, {})
-
+const isMobile = ref<boolean>(false)
 const isOpen = ref<boolean>(false)
+
+onMounted(() => {
+  if (window.innerWidth < 800) {
+    isMobile.value = true
+  }
+})
 const toggle = (val: boolean) => {
   // console.log('toggle', val)
   isOpen.value = val
@@ -23,56 +29,51 @@ watch(
   { deep: true, immediate: true },
 )
 
-watch(
-  () => isOpen.value,
-  (value) => {
-    // console.log(value)
-    if (value) {
-      animeIn()
-    } else {
-      animeOut()
-    }
-  },
-  { deep: true },
-)
+// watch(
+//   () => isOpen.value,
+//   (value) => {
+//     // console.log(value)
+//     if (value) {
+//       animeIn()
+//     } else {
+//       animeOut()
+//     }
+//   },
+//   { deep: true },
+// )
 
-const animeIn = () => {
-  gsap.to('.nav-item', {
-    opacity: 1,
-    duration: 0.5,
-    stagger: {
-      each: 0.05,
-    },
-  })
-}
-const animeOut = () => {
-  gsap.to('.nav-item', {
-    opacity: 0,
-    duration: 0.5,
-    stagger: {
-      each: 0.05,
-      from: 'end',
-    },
-  })
-}
+// const animeIn = () => {
+//   gsap.to('.nav-item', {
+//     opacity: 1,
+//     duration: 0.5,
+//     stagger: {
+//       each: 0.05,
+//     },
+//   })
+// }
+// const animeOut = () => {
+//   gsap.to('.nav-item', {
+//     opacity: 0,
+//     duration: 0.5,
+//     stagger: {
+//       each: 0.05,
+//       from: 'end',
+//     },
+//   })
+// }
 
-const animeOutDelayed = () => {
-  setTimeout(() => {
-    toggle(false)
-  }, 1000)
-}
+// const animeOutDelayed = () => {
+//   setTimeout(() => {
+//     toggle(false)
+//   }, 1000)
+// }
 </script>
 <template>
-  <nav
-    @click="toggle(!isOpen)"
-    @mouseenter="toggle(true)"
-    @mouseleave="animeOutDelayed"
-    :class="{ 'is-open': isOpen === true }"
-  >
+  <nav @click="toggle(!isOpen)" :class="{ 'is-open': isOpen === true }">
     <div id="plus">
       <div><span></span> <span></span></div>
     </div>
-    <div>
+    <div class="menu-container">
       <ul class="nav-primary">
         <li v-for="li in data?.navPrimary" :key="li._key" class="nav-item">
           <NuxtLink
@@ -112,8 +113,6 @@ nav {
   top: 0;
   bottom: 0;
   padding: 20px 40px;
-  /* top: 20px; */
-  /* left: 40px; */
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -132,6 +131,7 @@ nav {
   margin-left: -8px;
   margin-top: -8px;
   cursor: pointer;
+  display: none;
 }
 #plus > div {
   transform: translateY(16px) translateX(8px);
@@ -154,7 +154,7 @@ ul {
   li {
     font-size: 11px;
     line-height: 18px;
-    opacity: 0;
+    /* opacity: 0; */
   }
 }
 
@@ -164,12 +164,20 @@ ul {
     padding: 20px;
     transition: background-color 0.2s;
     pointer-events: none;
-    #plus {
-      pointer-events: all;
-    }
+
     &.is-open {
       background: #fff;
       pointer-events: all;
+      .menu-container {
+        display: block;
+      }
+    }
+    #plus {
+      pointer-events: all;
+      display: block;
+    }
+    .menu-container {
+      display: none;
     }
   }
 }

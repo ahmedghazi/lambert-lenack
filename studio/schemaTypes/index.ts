@@ -19,6 +19,7 @@ import figure from './objects/figure'
 import textUI from './objects/modules/textUI'
 import listProjectsUI from './objects/modules/listProjectsUI'
 import listArticlesUI from './objects/modules/listArticlesUI'
+import sliderArticlesUI from './objects/modules/sliderArticlesUI'
 
 export const schemaTypes = [
   // home,
@@ -44,5 +45,6 @@ export const schemaTypes = [
   textUI,
   listProjectsUI,
   listArticlesUI,
+  sliderArticlesUI,
 ]
 export default schemaTypes
