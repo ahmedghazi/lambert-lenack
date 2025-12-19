@@ -182,7 +182,6 @@ button {
   top: 0;
   text-indent: -9999px;
   z-index: 50;
-  /* background: red; */
   &.btn--prev {
     left: 0;
   }
