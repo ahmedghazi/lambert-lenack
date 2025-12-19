@@ -199,7 +199,6 @@ button {
     bottom: 15px !important;
   }
   swiper-slide {
-    /* height: calc(var(--vh) * 100); */
     height: calc(var(--vh) * 100 - 130px);
 
     img {
