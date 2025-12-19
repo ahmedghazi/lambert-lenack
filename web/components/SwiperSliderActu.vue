@@ -24,7 +24,6 @@ const swiperInstance = ref(null)
 const swiper = useSwiper(swiperRef)
 let prevSlide = 0
 
-// console.log(props.goToCredits, length, prevSlide, swiperRef)
 watchEffect(() => {
   // if (props.goToCredits) {
   //   swiper.to(props.slider.length)
