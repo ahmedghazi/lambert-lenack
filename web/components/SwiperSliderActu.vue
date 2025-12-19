@@ -58,7 +58,6 @@ const _storeCurrentIndex = () => {
 }
 
 const _handleSlideChange = (swiperEl: any) => {
-  // console.log(swiperEl)
   const currentSlide = swiperEl.querySelector('.swiper-slide-active')
   if (!currentSlide) return
 
