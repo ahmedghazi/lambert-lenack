@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import './assets/styles/tailwind.css'
-import './assets/styles/index.scss'
 import Header from './components/Header.vue'
 import { onMounted, onUnmounted } from 'vue'
 import PreviewModeBanner from './components/PreviewModeBanner.vue'
