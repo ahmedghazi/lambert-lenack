@@ -7,6 +7,7 @@ import type {
 } from 'sanity-codegen'
 import { watch, ref, computed } from 'vue'
 import type { Article } from '~/types/schema'
+import { _linkResolver } from '../utils/index'
 
 const props = defineProps<{
   // slider?:
@@ -107,14 +108,15 @@ const _handleSlideChange = (swiperEl: any) => {
         />
         <div class="footer">
           <h2 v-if="slide.title && slide.title.fr" class="title">
-            {{ slide.title.fr }}
+            <!-- {{ slide.title.fr }} -->
+            <NuxtLink
+              v-if="slide.link && slide.link.link && slide.link.label"
+              :to="_linkResolver(slide.link?.link)"
+            >
+              {{ slide.title.fr }}
+            </NuxtLink>
+            <span v-else>{{ slide.title.fr }}</span>
           </h2>
-          <NuxtLink
-            v-if="slide.link && slide.link.link && slide.link.label"
-            :to="_linkResolver(slide.link?.link)"
-          >
-            {{ slide.link.label.fr }}
-          </NuxtLink>
         </div>
       </swiper-slide>
     </swiper-container>
@@ -143,7 +145,9 @@ swiper-slide {
   }
   .footer {
     padding: var(--space-sm);
-    height: calc(var(--space-xxl) / 2);
+    padding: 0;
+    padding-bottom: var(--space-xl);
+    /* height: calc(var(--space-xxl) / 2); */
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -154,10 +158,13 @@ swiper-slide {
       display: inline-block;
     }
     h2 {
-      font-size: 18px;
+      /* font-size: 18px; */
+      font-size: inherit;
       font-weight: normal;
-      line-height: 1;
+      line-height: normal;
       /* margin: 0 0 15px; */
+      /* color: red; */
+      text-transform: uppercase;
     }
     span {
       position: absolute;
@@ -171,6 +178,13 @@ swiper-slide {
   position: fixed !important;
   right: var(--space-xl) !important;
   bottom: var(--space-xl) !important;
+  /* right: 0 !important;
+  bottom: 0 !important;
+  height: calc(var(--space-xxl) / 2); */
+
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
 }
 
 button {

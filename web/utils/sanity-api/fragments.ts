@@ -117,6 +117,7 @@ export const sliderArticlesUI = `
 				link->{
 					_type,
 					slug,
+					tag->,
       	},
 			}
 		},

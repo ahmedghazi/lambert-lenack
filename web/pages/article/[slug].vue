@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { type Post } from '~/types/Post'
 import { PortableText } from '@portabletext/vue'
-
+import { _formatDate } from '../../utils'
 const route = useRoute()
 
-const query = groq`*[ _type == "post" && slug.current == $slug][0]`
+const query = groq`*[ _type == "post" &&slug.current == $slug][0]`
 const { data: post } = await useSanityQuery<Post>(query, {
   slug: route.params.slug,
 })
@@ -22,7 +22,7 @@ const { data: post } = await useSanityQuery<Post>(query, {
     <div class="post__container">
       <h1 class="post__title">{{ post.title }}</h1>
       <p class="post__excerpt">{{ post.excerpt }}</p>
-      <p class="post__date">{{ formatDate(post._createdAt) }}</p>
+      <p class="post__date">{{ _formatDate(post._createdAt) }}</p>
       <div v-if="post.body" class="post__content">
         <PortableText :value="post.body" />
       </div>
@@ -30,27 +30,28 @@ const { data: post } = await useSanityQuery<Post>(query, {
   </section>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .post {
+  opacity: 0;
   width: 100%;
   margin: var(--space-1) 0 var(--space-4);
 
-  & .post__cover,
-  & .post__cover--none {
+  &.post__cover,
+  &.post__cover--none {
     width: 100%;
     height: 200px;
     object-fit: cover;
   }
 
-  & .post__cover--none {
+  &.post__cover--none {
     background: var(--black);
   }
 
-  & .post__container {
+  &.post__container {
     padding: 0 var(--space-3);
   }
 
-  & .post__content {
+  &.post__content {
     font-family: var(--font-family-serif);
     font-weight: 400;
     font-size: var(--font-size-4);
@@ -59,19 +60,19 @@ const { data: post } = await useSanityQuery<Post>(query, {
     margin-top: var(--space-6);
 
     /* Targeting tags in PortableText */
-    & blockquote {
+    &blockquote {
       border-left: 5px solid var(--black);
       padding-left: var(--space-3);
       margin-left: var(--space-4);
     }
 
-    & a {
+    &a {
       color: var(--blue-600);
       text-decoration: none;
     }
   }
 
-  & .post__title {
+  &.post__title {
     font-family: var(--font-family-sans);
     font-size: var(--font-size-7);
     line-height: var(--line-height-6);
@@ -79,7 +80,7 @@ const { data: post } = await useSanityQuery<Post>(query, {
     font-weight: 800;
   }
 
-  & .post__excerpt {
+  &.post__excerpt {
     font-family: var(--font-family-serif);
     font-size: var(--font-size-5);
     line-height: var(--line-height-4);
@@ -87,7 +88,7 @@ const { data: post } = await useSanityQuery<Post>(query, {
     font-weight: 400;
   }
 
-  & .post__date {
+  &.post__date {
     font-family: var(--font-family-sans);
     font-weight: 600;
     font-family: var(--font-family-sans);
@@ -99,33 +100,33 @@ const { data: post } = await useSanityQuery<Post>(query, {
 
 @media (min-width: 800px) {
   .post {
-    & .post__cover,
-    & .post__cover--none {
+    &.post__cover,
+    &.post__cover--none {
       width: 750px;
       height: 380px;
     }
 
-    & .post__title {
+    &.post__title {
       font-size: var(--font-size-10);
       line-height: var(--line-height-10);
       margin: var(--space-6) 0 0;
       letter-spacing: -0.025em;
     }
 
-    & .post__excerpt {
+    &.post__excerpt {
       font-size: var(--font-size-5);
       line-height: var(--line-height-5);
       margin-top: var(--space-3);
       margin-bottom: var(--space-3);
     }
 
-    & .post__date {
+    &.post__date {
       font-size: var(--font-size-3);
       line-height: var(--line-height-2);
       margin-top: var(--space-0);
     }
 
-    & .post__content {
+    &.post__content {
       margin-top: var(--space-7);
     }
   }

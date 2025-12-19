@@ -29,11 +29,11 @@ useSeoMeta({
 })
 
 // Debug logging
-console.log('SEO Data:', {
-  title: pageTitle,
-  description: seo?.metaDescription,
-  image: seo?.metaImage?.asset?.url,
-})
+// console.log('SEO Data:', {
+//   title: pageTitle,
+//   description: seo?.metaDescription,
+//   image: seo?.metaImage?.asset?.url,
+// })
 </script>
 
 <template>

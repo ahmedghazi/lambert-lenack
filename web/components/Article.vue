@@ -2,6 +2,7 @@
 import { PortableText } from '@portabletext/vue'
 import type { Article } from '~/types/schema'
 import { portableTextComponents } from '~/utils/sanity-api/portableTextComponents'
+import { _linkResolver } from '../utils/index'
 defineProps<{ input: Article }>()
 </script>
 
@@ -13,7 +14,7 @@ defineProps<{ input: Article }>()
       :src="urlFor(input.imageCover).width(2000).url()"
       alt="Cover image"
     />
-
+    <!-- <pre>{{ JSON.stringify(input, null, 2) }}</pre> -->
     <div class="header">
       <time v-if="input.date" :datetime="input.date">{{
         _formatDate(input.date)
@@ -32,7 +33,8 @@ defineProps<{ input: Article }>()
         v-if="input.link && input.link.link && input.link.label"
         :to="_linkResolver(input.link?.link)"
       >
-        {{ input.link.label.fr }}
+        {{ input.link.label.fr }} {{ _linkResolver(input.link?.link) }}
+        {{ input.link?.link._type }}
       </NuxtLink>
     </div>
   </article>

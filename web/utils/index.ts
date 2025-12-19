@@ -18,13 +18,16 @@ export function urlFor(source: Image) {
 
 export function _linkResolver(doc: Project | PageModulaire | Article) {
   if (!doc.slug) return '/'
-
   switch (doc._type) {
     case 'project':
+      // console.log('_linkResolver', doc._type)
+      // console.log(doc)
       // return `/projet/${doc.slug.current}`
       return _resolveProjectUrl(doc)
     case 'pageModulaire':
       return `/${doc.slug.current}`
+    case 'article':
+      return `/article/${doc.slug.current}`
     default:
       return '/'
   }

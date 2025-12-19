@@ -112,7 +112,8 @@ nav {
   left: 0;
   top: 0;
   bottom: 0;
-  padding: 20px 40px;
+  /* padding: 20px 40px; */
+  padding: 46px;
   z-index: 1;
   display: flex;
   flex-direction: column;
