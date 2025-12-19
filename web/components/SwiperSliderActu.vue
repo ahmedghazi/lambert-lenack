@@ -132,13 +132,13 @@ swiper-slide {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  height: calc(var(--vh) * 100 - var(--space-xxl) / 2);
-  width: calc(100% - var(--space-xxl));
+  height: calc(var(--vh) * 100 - var(--space-xxl, 10rem) / 2);
+  width: calc(100% - var(--space-xxl, 10rem));
   img {
     object-fit: cover;
     object-fit: contain;
     width: 100%;
-    height: calc(var(--vh) * 100 - calc(var(--space-xxl)));
+    height: calc(var(--vh) * 100 - calc(var(--space-xxl, 10rem)));
 
     width: auto;
     object-fit: unset;
