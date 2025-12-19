@@ -97,7 +97,11 @@ const _handleSlideChange = (swiperEl: any) => {
         }
       "
     >
-      <swiper-slide v-for="(slide, idx) in props.slides" :key="idx">
+      <swiper-slide
+        v-for="(slide, idx) in props.slides"
+        :key="idx"
+        class="swiper-slide--actu"
+      >
         <img
           v-if="slide && slide.imageCover"
           class="visual"
@@ -126,7 +130,7 @@ const _handleSlideChange = (swiperEl: any) => {
 </template>
 
 <style lang="scss">
-swiper-slide {
+.swiper-slide--actu {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
