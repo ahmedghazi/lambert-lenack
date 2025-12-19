@@ -200,21 +200,32 @@ button {
   }
   swiper-slide {
     /* height: calc(var(--vh) * 100); */
+    height: calc(var(--vh) * 100 - 130px);
+
     img {
       object-fit: contain;
+      height: calc(var(--vh) * 100 - 260px);
     }
     .footer {
       padding: 15px;
       z-index: 51;
-      background-color: red;
       h2 {
         font-size: 10px;
+
+        &,
+        a {
+          line-height: 1.3;
+          display: inline-block;
+        }
       }
       span {
         font-size: 14px;
         top: -3px;
       }
     }
+  }
+  .swiper-pagination {
+    font-size: 10px;
   }
 }
 </style>

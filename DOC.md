@@ -4,5 +4,5 @@
 - Slider actu en home
 - Rendre le menu fixe
 - Transformer l'actuelle page d'accueil en une page intitulée "tout"
-- améliorer la résolution des documents graphiques
-- slider articles légende comme sur la page projet (clickable)
+  #- améliorer la résolution des documents graphiques
+  #- slider articles légende comme sur la page projet (clickable)
