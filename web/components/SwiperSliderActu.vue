@@ -141,9 +141,8 @@ const _handleSlideChange = (swiperEl: any) => {
     object-fit: contain;
     width: 100%;
     height: calc(var(--vh) * 100 - calc(var(--space-xxl, 10rem)));
-
     width: auto;
-    object-fit: unset;
+    // object-fit: unset;
   }
   .footer {
     padding: var(--space-sm);

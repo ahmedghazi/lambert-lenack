@@ -10,8 +10,8 @@ import {resolveProductionUrlAlt} from './src/actions/resolveProductionUrlAlt'
 
 // import {schemaTypes} from './schemas'
 
-export const projectId = process.env.SANITY_STUDIO_PROJECT_ID!
-export const dataset = process.env.SANITY_STUDIO_DATASET!
+export const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'awak6olh'
+export const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
 const remoteURL = 'https://www.lambertlenack.com'
 const localURL = 'http://localhost:3000'
 const previewURL = window.location.hostname === 'localhost' ? localURL : remoteURL
@@ -19,8 +19,8 @@ const previewURL = window.location.hostname === 'localhost' ? localURL : remoteU
 export default defineConfig({
   name: 'lambert-lenack',
   title: 'Lambert Lénack',
-  projectId,
-  dataset,
+  projectId: 'awak6olh',
+  dataset: 'production',
 
   plugins: [
     structureTool({structure}),
