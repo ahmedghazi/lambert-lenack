@@ -165,10 +165,11 @@ const _handleSlideChange = (swiperEl: any) => {
       text-transform: uppercase;
     }
     span {
-      position: absolute;
-      right: -1.4em;
-      top: -0.222em;
+      // position: absolute;
+      // right: -1.4em;
+      // top: -0.222em;
       font-size: 1.333em;
+      white-space: nowrap;
     }
   }
 }

@@ -37,7 +37,6 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
       group: 'editorial',
-      // hidden: true,
     }),
     defineField({
       name: 'date',
