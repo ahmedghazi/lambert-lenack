@@ -33,9 +33,15 @@ defineProps<{ input: Article }>()
         v-if="input.link && input.link.link && input.link.label"
         :to="_linkResolver(input.link?.link)"
       >
-        {{ input.link.label.fr }} {{ _linkResolver(input.link?.link) }}
-        {{ input.link?.link._type }}
+        {{ input.link.label.fr }}
       </NuxtLink>
+      <!-- <pre v-if="input.link && input.link.link">{{
+        _linkResolver(input.link?.link)
+      }}</pre>
+      <pre v-if="input.link && input.link.link">{{
+        input.link?.link._type
+      }}</pre>
+      <pre>{{ input.link }}</pre> -->
     </div>
   </article>
 </template>

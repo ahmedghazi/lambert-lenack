@@ -95,6 +95,7 @@ export const listArticlesUI = `
 				link->{
 					_type,
 					slug,
+					tag->,
       	},
 			}
 		},
