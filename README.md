@@ -1,5 +1,9 @@
 # lambert lénack
 
+# Server :
+
+vercel
+
 Lambert Lénack — Web + CMS Monorepo
 A monorepo containing the public website built with Nuxt 3 and a Sanity v3 Studio for content management.
 
