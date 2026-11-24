@@ -6,11 +6,12 @@ import SwiperSlider from '../SwiperSlider.vue'
 import SwiperSliderActu from '../SwiperSliderActu.vue'
 // import SwiperSlider from '../SwiperSlider.vue'
 
-defineProps<{ input: SliderArticlesUI }>()
+const props = defineProps<{ input: SliderArticlesUI }>()
 
 onMounted(() => {
   console.log('ModuleListArticlesUI mounted')
 })
+console.log('ModuleListArticlesUI', props.input)
 </script>
 
 <template>

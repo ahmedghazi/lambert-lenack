@@ -76,7 +76,6 @@ const _handleSlideChange = (swiperEl: any) => {
 
 <template>
   <ClientOnly>
-    <!-- <pre>{{ props.slides }}</pre> -->
     <swiper-container
       ref="swiperRef"
       :speed="0"
@@ -103,24 +102,25 @@ const _handleSlideChange = (swiperEl: any) => {
         :key="idx"
         class="swiper-slide--actu"
       >
-        <img
-          v-if="slide && slide.imageCover"
-          class="visual"
-          :src="$urlFor(slide.imageCover).width(2000).height(2000).url()"
-          alt="Cover image"
-        />
-        <div class="footer">
-          <h2 v-if="slide.title && slide.title.fr" class="title">
-            <!-- {{ slide.title.fr }} -->
-            <!-- <pre>slide.link {{ slide.link }}</pre> -->
-            <NuxtLink
-              v-if="slide.link && slide.link.link"
-              :to="_linkResolver(slide.link?.link)"
-            >
-              {{ slide.title.fr }}
-            </NuxtLink>
-            <span v-else>{{ slide.title.fr }}</span>
-          </h2>
+        <div class="inner">
+          <img
+            v-if="slide && slide.imageCover"
+            class="visual"
+            :src="$urlFor(slide.imageCover).width(2000).height(2000).url()"
+            alt="Cover image"
+          />
+          <div class="swiper-slide--footer">
+            <h2 v-if="slide.title && slide.title.fr" class="title">
+              <!-- {{ slide.title.fr }} -->
+              <NuxtLink
+                v-if="slide.link && slide.link.link"
+                :to="_linkResolver(slide.link?.link)"
+              >
+                {{ slide.title.fr }}
+              </NuxtLink>
+              <span v-else>{{ slide.title.fr }}</span>
+            </h2>
+          </div>
         </div>
       </swiper-slide>
     </swiper-container>
@@ -133,11 +133,16 @@ const _handleSlideChange = (swiperEl: any) => {
 
 <style lang="scss">
 .swiper-slide--actu {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  height: calc(var(--vh) * 100 - var(--space-xxl, 10rem) / 2);
+  // height: calc(var(--vh) * 100 - var(--space-xxl, 10rem) / 2);
   width: calc(100% - var(--space-xxl, 10rem));
+  .inner {
+    height: calc(var(--vh) * 100 - var(--space-xxl, 10rem) / 2);
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+  }
   img {
     object-fit: cover;
     object-fit: contain;
@@ -146,7 +151,9 @@ const _handleSlideChange = (swiperEl: any) => {
     width: auto;
     // object-fit: unset;
   }
-  .footer {
+  .swiper-slide--footer {
+    left: 0;
+    position: initial;
     padding: var(--space-sm);
     padding: 0;
     padding-bottom: var(--space-xl);
@@ -208,7 +215,7 @@ button {
       object-fit: contain;
       height: calc(var(--vh) * 100 - 260px);
     }
-    .footer {
+    .swiper-slide--footer {
       padding: 15px;
       z-index: 51;
       h2 {
