@@ -135,6 +135,10 @@ const _handleSlideChange = (swiperEl: any) => {
 .swiper-slide--actu {
   // height: calc(var(--vh) * 100 - var(--space-xxl, 10rem) / 2);
   width: calc(100% - var(--space-xxl, 10rem));
+  height: calc(var(--vh) * 100 - var(--space-xxl, 10rem) / 2);
+
+  align-items: flex-start;
+
   .inner {
     height: calc(var(--vh) * 100 - var(--space-xxl, 10rem) / 2);
 

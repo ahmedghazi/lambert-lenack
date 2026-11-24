@@ -24,7 +24,7 @@ console.log('ModuleListArticlesUI', props.input)
 </template>
 
 <style lang="scss" scoped>
-.module {
+.module--slider-articles-ui {
   // background-color: red;
 }
 @media (max-width: 800px) {
