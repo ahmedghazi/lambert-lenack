@@ -106,7 +106,7 @@ const _handleSlideChange = (swiperEl: any) => {
           <img
             v-if="slide && slide.imageCover"
             class="visual"
-            :src="$urlFor(slide.imageCover).width(2000).height(2000).url()"
+            :src="$urlFor(slide.imageCover).width(1500).height(1500).url()"
             alt="Cover image"
           />
           <div class="swiper-slide--footer">
