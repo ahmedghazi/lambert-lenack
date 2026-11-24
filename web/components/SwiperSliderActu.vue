@@ -107,7 +107,7 @@ const _handleSlideChange = (swiperEl: any) => {
             v-if="slide && slide.imageCover"
             class="visual"
             :src="$urlFor(slide.imageCover).width(1500).height(1500).url()"
-            alt="Cover image"
+            :alt="slide.title || 'Cover image'"
           />
           <div class="swiper-slide--footer">
             <h2 v-if="slide.title && slide.title.fr" class="title">
