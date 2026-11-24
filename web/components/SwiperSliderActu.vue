@@ -76,6 +76,7 @@ const _handleSlideChange = (swiperEl: any) => {
 
 <template>
   <ClientOnly>
+    <!-- <pre>{{ props.slides }}</pre> -->
     <swiper-container
       ref="swiperRef"
       :speed="0"
@@ -111,8 +112,9 @@ const _handleSlideChange = (swiperEl: any) => {
         <div class="footer">
           <h2 v-if="slide.title && slide.title.fr" class="title">
             <!-- {{ slide.title.fr }} -->
+            <!-- <pre>slide.link {{ slide.link }}</pre> -->
             <NuxtLink
-              v-if="slide.link && slide.link.link && slide.link.label"
+              v-if="slide.link && slide.link.link"
               :to="_linkResolver(slide.link?.link)"
             >
               {{ slide.title.fr }}

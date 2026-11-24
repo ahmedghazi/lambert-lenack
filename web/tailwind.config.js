@@ -36,6 +36,7 @@ const config = {
       gray: 'var(--color-gray)',
       'gray-alt': 'var(--color-gray-alt)',
       yellow: 'var(--color-yellow)',
+      red: 'var(--color-red)',
     },
     fontSize: {
       sm: ['var(--text-sm)', '1.1'],

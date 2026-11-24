@@ -24,6 +24,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .module {
+  // background-color: red;
 }
 @media (max-width: 800px) {
   .module {
