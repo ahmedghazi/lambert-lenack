@@ -175,14 +175,16 @@ const _handleSlideChange = (swiperEl: any) => {
       font-weight: normal;
       line-height: normal;
 
+      // font-size: 1.333em;
       text-transform: uppercase;
+      white-space: nowrap;
+      color: var(--color-a);
     }
     span {
       // position: absolute;
       // right: -1.4em;
       // top: -0.222em;
-      font-size: 1.333em;
-      white-space: nowrap;
+      // font-size: 1.333em;
     }
   }
 }
