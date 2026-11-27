@@ -77,6 +77,7 @@ const _handleSlideChange = (swiperEl: any) => {
 <template>
   <ClientOnly>
     <swiper-container
+      class="swiper-container"
       ref="swiperRef"
       :speed="0"
       :pagination="{
@@ -132,15 +133,18 @@ const _handleSlideChange = (swiperEl: any) => {
 </template>
 
 <style lang="scss">
+.swiper-container {
+  --slide-h: calc(var(--vh) * 100 - var(--space-xxl, 10rem) / 2);
+}
 .swiper-slide--actu {
   // height: calc(var(--vh) * 100 - var(--space-xxl, 10rem) / 2);
   width: calc(100% - var(--space-xxl, 10rem));
-  height: calc(var(--vh) * 100 - var(--space-xxl, 10rem) / 2);
+  height: var(--slide-h);
 
   align-items: flex-start;
 
   .inner {
-    height: calc(var(--vh) * 100 - var(--space-xxl, 10rem) / 2);
+    height: var(--slide-h);
 
     display: flex;
     justify-content: space-between;
@@ -160,7 +164,9 @@ const _handleSlideChange = (swiperEl: any) => {
     position: initial;
     padding: var(--space-sm);
     padding: 0;
-    padding-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    // height: auto;
+    // flex: 1;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -174,11 +180,20 @@ const _handleSlideChange = (swiperEl: any) => {
       font-size: inherit;
       font-weight: normal;
       line-height: normal;
-
+      color: black;
       // font-size: 1.333em;
       text-transform: uppercase;
       white-space: nowrap;
       color: var(--color-a);
+      transition: all 0.3s ease;
+      color: black;
+      &:hover {
+        font-size: 1.333em;
+        color: black;
+      }
+      a {
+        color: black;
+      }
     }
     span {
       // position: absolute;
@@ -191,7 +206,10 @@ const _handleSlideChange = (swiperEl: any) => {
 .swiper-pagination {
   position: fixed !important;
   right: var(--space-xl) !important;
-  bottom: var(--space-xl) !important;
+  bottom: var(--space-lg) !important;
+  // bottom: 0;
+  // top: var(--header-h);
+  // padding-top: calc(var(--vh) * 100 - var(--space-xxl, 10rem) / 2);
 }
 
 button {
@@ -210,11 +228,19 @@ button {
 }
 
 @media (max-width: 800px) {
+  .swiper-slide--actu {
+    .swiper-slide--footer {
+      padding-bottom: 0;
+      // text-align: right;
+      // padding-right: 2.2em;
+    }
+  }
   .swiper-pagination {
     right: 15px !important;
-    bottom: 15px !important;
+    bottom: 14px !important;
+    line-height: 1;
   }
-  swiper-slide {
+  /*swiper-slide {
     height: calc(var(--vh) * 100 - 130px);
 
     img {
@@ -223,6 +249,7 @@ button {
     }
     .swiper-slide--footer {
       padding: 15px;
+      padding-bottom: 0;
       z-index: 51;
       h2 {
         font-size: 10px;
@@ -238,9 +265,9 @@ button {
         top: -3px;
       }
     }
-  }
+  }*/
   .swiper-pagination {
-    font-size: 10px;
+    // font-size: 10px;
   }
 }
 </style>

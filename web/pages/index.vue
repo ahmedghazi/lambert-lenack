@@ -45,6 +45,7 @@ useSeoMeta({
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 130px;
+    padding-top: var(--header-h);
   }
 }
 </style>
